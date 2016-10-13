@@ -23,6 +23,7 @@ public class Iteu333aProject {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, IOException{
         
         //Main codes here...
+        int error = 0;
         Scanner scan = new Scanner(new FileReader("code.txt"));
         PrintWriter writer = new PrintWriter("Test.java", "UTF-8");
         ArrayList<String> list = new ArrayList<String>(Arrays.asList("int", "double", "float", "String", "char"));
@@ -31,8 +32,14 @@ public class Iteu333aProject {
             //check syntax;
             System.out.println(str);
             if(!str.endsWith(";")){
-                System.out.print(" Syntax Error, no semicolon at the end");
-
+                error++;
+                System.out.print(" " + error + ". Syntax Error, no semicolon at the end");
+            }
+            else if (!str.matches("int|double|float|String|char")){
+                error++;
+                System.out.print(" " + error + ". Syntax Error, no data type");
+            }
+            
             writer.println(str);
         }
         writer.close();
