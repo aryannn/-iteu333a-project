@@ -26,7 +26,6 @@ public class Iteu333aProject {
         int error = 0;
         try{Scanner scan = new Scanner(new FileReader("C:\\Users\\hanna\\Documents\\NetBeansProjects\\projectCOMPILER\\src\\iteu333a\\project\\-iteu333a-project\\Iteu333a-project\\src\\iteu333a\\project\\code.txt"));
         PrintWriter writer = new PrintWriter("Test.java", "UTF-8");
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("int", "double", "float", "String", "char"));
         //try{
             while (scan.hasNext()){
                 String str = scan.nextLine();
@@ -36,9 +35,25 @@ public class Iteu333aProject {
                     error++;
                     System.out.println(" " + error + ". Syntax Error, no semicolon at the end");
                 }
-                if (!str.matches("int|double|float|String|char")){
+                if (!str.matches("int|double|float|String|char")){ //MAY MALI, di ko madetermine ano >_<
                     error++;
                     System.out.println(" " + error + ". Syntax Error, no data type");
+                }
+                if (str.matches("int|double|float")){                         //MAY MALI din >_<
+                    if (str.matches("'[^'\"]*')|(\"[^'\"]*\")|([^'\"]*")){
+                        error++;
+                        System.out.println(" " + error + ". Syntax Error, wrong data type");
+                    }
+                }
+                if (str.matches("String")){
+                    if (!str.matches("'[^'\"]*')|(\"[^'\"]*\")|([^'\"]*")){ //di ko pa nararun hehe
+                        error++;
+                        System.out.println(" " + error + ". Syntax Error, must have double quotation marks");
+                    }
+                }
+                if (str.matches("\\w[ ]{2,}\\w")){                          //di ko pa nararun din :D
+                    error++;
+                    System.out.println(" " + error + ". Syntax Error, consists of two or more consecutive spaces");
                 }
                 
                 writer.println(str);
