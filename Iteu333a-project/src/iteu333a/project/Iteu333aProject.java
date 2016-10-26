@@ -24,25 +24,29 @@ public class Iteu333aProject {
         
         //Main codes here...
         int error = 0;
-        Scanner scan = new Scanner(new FileReader("code.txt"));
+        try{Scanner scan = new Scanner(new FileReader("C:\\Users\\hanna\\Documents\\NetBeansProjects\\projectCOMPILER\\src\\iteu333a\\project\\-iteu333a-project\\Iteu333a-project\\src\\iteu333a\\project\\code.txt"));
         PrintWriter writer = new PrintWriter("Test.java", "UTF-8");
-        ArrayList<String> list = new ArrayList<String>(Arrays.asList("int", "double", "float", "String", "char"));
-        while (scan.hasNext()){
-            String str = scan.nextLine();
-            //check syntax;
-            System.out.println(str);
-            if(!str.endsWith(";")){
-                error++;
-                System.out.print(" " + error + ". Syntax Error, no semicolon at the end");
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("int", "double", "float", "String", "char"));
+        //try{
+            while (scan.hasNext()){
+                String str = scan.nextLine();
+                //check syntax;
+                System.out.println(str);
+                if(!str.endsWith(";")){
+                    error++;
+                    System.out.println(" " + error + ". Syntax Error, no semicolon at the end");
+                }
+                if (!str.matches("int|double|float|String|char")){
+                    error++;
+                    System.out.println(" " + error + ". Syntax Error, no data type");
+                }
+                
+                writer.println(str);
             }
-            else if (!str.matches("int|double|float|String|char")){
-                error++;
-                System.out.print(" " + error + ". Syntax Error, no data type");
-            }
+            writer.close();
             
-            writer.println(str);
+        }catch(Exception e){
+            System.out.println(e);
         }
-        writer.close();
-        
     }
 }
