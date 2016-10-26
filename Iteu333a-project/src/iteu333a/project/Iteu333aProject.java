@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 //Import here...
 public class Iteu333aProject {
 
@@ -56,6 +58,22 @@ public class Iteu333aProject {
                     System.out.println(" " + error + ". Syntax Error, consists of two or more consecutive spaces");
                 }
                 
+                 String s = "a=0 , b=0 ,  c= 0";
+                 Pattern doublespaces = Pattern.compile("\\s\\s");
+                 Matcher spaces = doublespaces.matcher(s);
+                 String result = spaces.replaceAll(" ");;
+                 if (spaces.find()) {
+                 System.out.println(result); }// check spaces
+                   
+                     
+                String data = " //single comment \n" + " " + "/* multi\n" + " line \n" + " comment */\n";
+                Pattern feedback = Pattern.compile("//.*|/\\*((.|\\n)(?!=*/))+\\*/");
+                Matcher matcher = feedback.matcher(data);
+                while (matcher.find()) {
+                System.out.println(matcher.group());
+                    } //check comments
+
+            
                 writer.println(str);
             }
             writer.close();
