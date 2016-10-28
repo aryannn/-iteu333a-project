@@ -23,63 +23,79 @@ public class Iteu333aProject {
 
     //Global variable here...
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, IOException{
-        
+     
         //Main codes here...
         int error = 0;
-        try{Scanner scan = new Scanner(new FileReader("C:\\Users\\hanna\\Documents\\NetBeansProjects\\projectCOMPILER\\src\\iteu333a\\project\\-iteu333a-project\\Iteu333a-project\\src\\iteu333a\\project\\code.txt"));
+        
+        try{Scanner scan = new Scanner(new FileReader("C:\\Users\\hp1\\Documents\\NetBeansProjects\\-iteu333a-project\\Testfinalproject\\src\\testfinalproject\\cs.txt"));
         PrintWriter writer = new PrintWriter("Test.java", "UTF-8");
-        //try{
             while (scan.hasNext()){
                 String str = scan.nextLine();
-                //check syntax;
+                //print file
                 System.out.println(str);
-                if(!str.endsWith(";")){
-                    error++;
-                    System.out.println(" " + error + ". Syntax Error, no semicolon at the end");
-                }
-                if (!str.matches("int|double|float|String|char")){ //MAY MALI, di ko madetermine ano >_<
-                    error++;
-                    System.out.println(" " + error + ". Syntax Error, no data type");
-                }
-                if (str.matches("int|double|float")){                         //MAY MALI din >_<
-                    if (str.matches("'[^'\"]*')|(\"[^'\"]*\")|([^'\"]*")){
+                //check if contains datatype
+                if(str.endsWith(";"))
+                {
+                    //check for integer datatype
+                    if((!str.contains("int")) && (!str.contains("float")) && (!str.contains("double")) && (!str.contains("string")) && (!str.contains("char")))  
+                    {
                         error++;
-                        System.out.println(" " + error + ". Syntax Error, wrong data type");
+                        System.out.println(error+".Syntax Error, no datatype detected");
+                    }               
+                    else
+                    {
+                        System.out.println("datatype detected");
                     }
+                    checkIntegerdatatype(str);
+                    
                 }
-                if (str.matches("String")){
-                    if (!str.matches("'[^'\"]*')|(\"[^'\"]*\")|([^'\"]*")){ //di ko pa nararun hehe
-                        error++;
-                        System.out.println(" " + error + ". Syntax Error, must have double quotation marks");
-                    }
+                // check for comment
+                else if((str.contains("//")))
+                {
+                    System.out.println("comment detected");
                 }
-                if (str.matches("\\w[ ]{2,}\\w")){                          //di ko pa nararun din :D
-                    error++;
-                    System.out.println(" " + error + ". Syntax Error, consists of two or more consecutive spaces");
-                }
-                
-                 String s = "a=0 , b=0 ,  c= 0";
-                 Pattern doublespaces = Pattern.compile("\\s\\s");
-                 Matcher spaces = doublespaces.matcher(s);
-                 String result = spaces.replaceAll(" ");;
-                 if (spaces.find()) {
-                 System.out.println(result); }// check spaces
-                   
-                     
-                String data = " //single comment \n" + " " + "/* multi\n" + " line \n" + " comment */\n";
-                Pattern feedback = Pattern.compile("//.*|/\\*((.|\\n)(?!=*/))+\\*/");
-                Matcher matcher = feedback.matcher(data);
-                while (matcher.find()) {
-                System.out.println(matcher.group());
-                    } //check comments
-
-            
                 writer.println(str);
+                System.out.println();
             }
             writer.close();
             
-        }catch(Exception e){
+        }
+        catch(Exception e){
             System.out.println(e);
         }
+        
     }
+public static String checkIntegerdatatype( String str) 
+{
+  Pattern feedback = Pattern.compile("[0-9]{1,8}");
+                        Matcher match = feedback.matcher(str);
+                        if (match.find())
+                        {
+                            System.out.println("correct datatype");
+                        }
+                        else
+                        {
+                            System.out.println("wrong datatype");
+                        }
+    return str;
 }
+
+public static String checkStringdatatype( String str) 
+{
+  Pattern feedback = Pattern.compile("[0-9]{1,8}");
+                        Matcher match = feedback.matcher(str);
+                        if (match.find())
+                        {
+                            System.out.println("correct datatype");
+                        }
+                        else
+                        {
+                            System.out.println("wrong datatype");
+                        }
+    return str;
+}
+
+}
+
+
+
