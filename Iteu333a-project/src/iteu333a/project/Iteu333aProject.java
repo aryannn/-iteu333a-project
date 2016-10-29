@@ -111,7 +111,7 @@ public static String checkIntegerdatatype( String str)
 
 public static String checkStringdatatype( String str) 
 {
-    Pattern feedback1 = Pattern.compile("[\"][\\w\\s]*[\"]");
+    Pattern feedback1 = Pattern.compile("[=][\"][\\w\\s]*[\"]");
     Matcher match1 = feedback1.matcher(str);
     for(int i=0;i<str.length();i++)
     {
