@@ -159,7 +159,7 @@ public static String checkdoubledatatype( String str)
 //check for char datatype
 public static String checkchardatatype( String str) 
 {
-    Pattern feedback1 = Pattern.compile("[=]['][\\W]*[']");
+    Pattern feedback1 = Pattern.compile("[=]['][[a-zA-Z]\\W]*[']");
     Matcher match1 = feedback1.matcher(str);
     for(int i=0;i<str.length();i++)
     { 
