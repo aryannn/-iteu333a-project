@@ -50,9 +50,12 @@ public class Iteu333aProject {
                         {
                             System.out.println("datatype detected");
                         }
+                        //check for correct datatype
                         checkIntegerdatatype(str);
                         checkStringdatatype(str);
                         checkdoubledatatype(str);
+                        checkchardatatype(str);
+                        checkfloatdatatype(str);
                     }
                     else
                     {
@@ -70,6 +73,7 @@ public class Iteu333aProject {
         }
         
     }
+//check for integer datatype
 public static String checkIntegerdatatype( String str) 
 {
   Pattern feedback1 = Pattern.compile("[0-9]{1,8}");
@@ -108,7 +112,7 @@ public static String checkIntegerdatatype( String str)
                     }
     return str;
 }
-
+//check for String datatype
 public static String checkStringdatatype( String str) 
 {
     Pattern feedback1 = Pattern.compile("[=][\"][\\w\\s]*[\"]");
@@ -130,7 +134,7 @@ public static String checkStringdatatype( String str)
     }
     return str;
 }
-
+//check for double datatype
 public static String checkdoubledatatype( String str) 
 {
     Pattern feedback1 = Pattern.compile("\\d{1,8}[.]*\\d{1,8}");
@@ -152,5 +156,49 @@ public static String checkdoubledatatype( String str)
     }
     return str;
 }
+//check for char datatype
+public static String checkchardatatype( String str) 
+{
+    Pattern feedback1 = Pattern.compile("[=]['][\\W]*[']");
+    Matcher match1 = feedback1.matcher(str);
+    for(int i=0;i<str.length();i++)
+    { 
+        if((str.charAt(i)=='c') && (str.charAt(i+1)=='h') && (str.charAt(i+2)=='a') && (str.charAt(i+3)=='r'))
+        {
+            if(match1.find())
+            {
+                System.out.println("correct initialization");
+            }
+            else
+            {
+                System.out.println("wrong initialization");
+            }
+        }
+        break;
+    }
+    return str;
+}
 
+//check for float datatype
+public static String checkfloatdatatype( String str) 
+{
+    Pattern feedback1 = Pattern.compile("[=]\\d{1,4}[.]*\\d{1,4}[fF]");
+    Matcher match1 = feedback1.matcher(str);
+    for(int i=0;i<str.length();i++)
+    { 
+        if((str.charAt(i)=='f') && (str.charAt(i+1)=='l') && (str.charAt(i+2)=='o') && (str.charAt(i+3)=='a') && (str.charAt(i+4)=='t'))
+        {
+            if(match1.find())
+            {
+                System.out.println("correct initialization");
+            }
+            else
+            {
+                System.out.println("wrong initialization");
+            }
+        }
+        break;
+    }
+    return str;
+}
 }

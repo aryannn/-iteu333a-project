@@ -1,4 +1,6 @@
 //check comment
 int a_name =1;
-String str=lfjs"jsdlfjk";
+String str="";
 double a = 1.5;
+char a ='F';
+float num =1.6f;
