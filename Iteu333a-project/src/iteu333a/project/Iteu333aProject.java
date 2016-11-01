@@ -36,6 +36,13 @@ public class Iteu333aProject {
                 {
                     System.out.println("comment detected");
                 }
+                //check spaces
+                 if((str.contains ("    "))){
+                  
+                  System.out.println("One Space only." + str);
+                  str.replaceAll("\\s+", " ");
+                  
+                  }
                 //check if semicolon is present
                 else
                 {
