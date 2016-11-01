@@ -1,6 +1,6 @@
 //check comment
 int a_name =1;
 String str="";
-double a = 1.5;
+double a =1.5;
 char a ='a';
 float num =1.6f;

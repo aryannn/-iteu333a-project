@@ -23,10 +23,9 @@ public class Iteu333aProject {
     //Global variable here...
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, IOException{
         
+       
         //Main codes here...
-        int error = 0;
-        try{Scanner scan = new Scanner(new FileReader("C:\\Users\\hanna\\Documents\\NetBeansProjects\\projectCOMPILER\\src\\iteu333a\\project\\-iteu333a-project\\Iteu333a-project\\src\\iteu333a\\project\\code.txt")); 
-        Scanner in = new Scanner(System.in);
+        try{Scanner scan = new Scanner(new FileReader("C:\\Users\\hp1\\Documents\\NetBeansProjects\\-iteu333a-compilerproject\\Iteu333a-project\\src\\iteu333a\\project\\cs.txt"));
         PrintWriter writer = new PrintWriter("Test.java", "UTF-8");
             while (scan.hasNext()){
                 String str = scan.nextLine();
@@ -36,46 +35,36 @@ public class Iteu333aProject {
                 if((str.contains("//")))
                 {
                     System.out.println("comment detected");
-                    output.add(str);
                 }
+                //check if semicolon is present
                 else
                 {
-                    if(!str.endsWith(";")) //check if semicolon is present
-                    {
-                        error++;
-                        System.out.println(error + ". No semicolon detected.");
-                        output.add(str+";");
-                    }
-                    else
+                    if(str.endsWith(";"))
                     {
                         //check if datatype is present
-                        /*if((!str.contains("int")) && (!str.contains("float")) && (!str.contains("double")) && (!str.contains("String")) && (!str.contains("char")))  
+                        if((!str.contains("int")) && (!str.contains("float")) && (!str.contains("double")) && (!str.contains("String")) && (!str.contains("char")))  
                         {
-                            error++;
-                            System.out.println(error+". Syntax Error, no datatype detected");
+                            System.out.println("no datatype detected");
 
                         }               
                         else
                         {
-                            System.out.println("datatype detected");
-                        }*/
+                          System.out.println("datatype detected");
                         //check for correct datatype
-                        checkIntegerdatatype(str);
-                        checkStringdatatype(str);
-                        checkdoubledatatype(str);
-                        checkchardatatype(str);
-                        checkfloatdatatype(str);
-                        checkParenthesis(str);
+                          checkfordatatype(str);
+                        //check for parenthesis
+                          checkParenthesis(str);
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("No semicolon detected.");
                     }
                 }
                 writer.println(str);
                 System.out.println();
             }
             writer.close();
-            for(int a=0; a<output.size(); a++){
-                System.out.println(output.get(a));
-            }
-            
             
         }
         catch(Exception e){
@@ -84,142 +73,70 @@ public class Iteu333aProject {
         
     }
 //check for integer datatype
-public static String checkIntegerdatatype( String str) 
+    
+public static String checkfordatatype(String str)
 {
-  Pattern feedback1 = Pattern.compile("[0-9]{1,8}");
-  Pattern feedback2 = Pattern.compile("[a-zA-Z]");
-                        Matcher match1 = feedback1.matcher(str);
-                        Matcher match2 = feedback2.matcher(str);
-                    for(int i=0; i<str.length();i++)
-                    {
-                        if(str.charAt(i)=='i' && str.charAt(i+1)=='n' && str.charAt(i+2)=='t' )
-                        {
-                                if(!str.contains("="))
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    if (!str.contains("\""))
-                                    {
-                                        if(match1.find())
-                                        {
-                                            System.out.println("correct initialization");
-                                        }
-                                        else if(match2.find())
-                                        {
-                                            System.out.println("wrong initialization");
-                                        }
-                                    }
-                                else
-                                {
-                                    System.out.println("wrong initialization");
-
-                                }
-                            }
-                        }  
-                        break;
-                    }
-    return str;
-}
-//check for String datatype
-public static String checkStringdatatype( String str) 
-{
-    Pattern feedback1 = Pattern.compile("[=][\"][\\w\\s]*[\"]");
-    Matcher match1 = feedback1.matcher(str);
-    for(int i=0;i<str.length();i++)
+    Pattern intresult = Pattern.compile("int [a-zA-Z]*[a-zA-Z0-9_]{1,}.[=]*[-]*[0-9]{1,8}[;]");
+    Matcher match1 = intresult.matcher(str);
+    Pattern stringresult = Pattern.compile("String [a-zA-Z]*[a-zA-Z0-9_]{1,}.[=]*[\"][\\w\\s]{0,}[\"]");
+    Matcher match2 = stringresult.matcher(str);
+    Pattern charresult = Pattern.compile("char [a-zA-Z]*[a-zA-Z0-9_]{1,}.[=]*['][a-zA-Z\\s]{0,1}[']");
+    Matcher match3 = charresult.matcher(str);
+    Pattern doubleresult = Pattern.compile("double [a-zA-Z]*[a-zA-Z0-9_]{1,}.[=]*[0-9]{1,8}[.][0-9]{1,8}");
+    Matcher match4 = doubleresult.matcher(str);
+    Pattern floatresult = Pattern.compile("float [a-zA-Z]*[a-zA-Z0-9_]{1,}.[=]*[0-9]{1,4}[.][0-9]{1,4}[fF]");
+    Matcher match5 = floatresult.matcher(str);
+    
+    for(int i=0; i<str.length();i++)
     {
-        if((str.charAt(i)=='S') && (str.charAt(i+1)=='t') && (str.charAt(i+2)=='r') && (str.charAt(i+3)=='i') && (str.charAt(i+4)=='n') && (str.charAt(i+5)=='g'))
+        //check for integer,double and float datatype
+        if(((str.charAt(i)=='i') && (str.charAt(i+1)=='n') && (str.charAt(i+2)=='t')) || ((str.charAt(i)=='d') && (str.charAt(i+1)=='o') && (str.charAt(i+2)=='u') && (str.charAt(i+3)=='b') && (str.charAt(i+4)=='l') && (str.charAt(i+5)=='e')) || ((str.charAt(i)=='f') && (str.charAt(i+1)=='l') && (str.charAt(i+2)=='o') && (str.charAt(i+3)=='a') && (str.charAt(i+4)=='t')))
         {
-            if(match1.find())
+            if((!str.contains("'")) && (!str.contains("\"")))
+            {
+                if(((!match5.find()) && (!match1.find())) && (!match4.find()))
+                {
+                    System.out.println("wrong initialization");
+                }
+                else
+                {
+                    System.out.println("correct initialization");
+                }
+            }
+            else
+            {
+                System.out.println("Wrong datatype");
+            }
+        }
+        
+        //check for String datatype
+        else if((str.charAt(i)=='S') && (str.charAt(i+1)=='t') && (str.charAt(i+2)=='r') && (str.charAt(i+3)=='i') && (str.charAt(i+4)=='n') && (str.charAt(i+5)=='g'))
+        {
+          if(match2.find())
+          {
+              System.out.println("correct initialization");
+          }
+          else
+          {
+              System.out.println("wrong initialization");
+          }
+        }
+        //check for correct char datatype
+        else if((str.charAt(i)=='c') && (str.charAt(i+1)=='h') && (str.charAt(i+2)=='a') && (str.charAt(i+3)=='r'))
+        {
+            if(match3.find())
             {
                 System.out.println("correct initialization");
-                output.add(str);
             }
             else
             {
                 System.out.println("wrong initialization");
-                output.add(str);
             }
         }
-        break;
+    
     }
     return str;
 }
-//check for double datatype
-public static String checkdoubledatatype( String str) 
-{
-    Pattern feedback1 = Pattern.compile("\\d{1,8}[.]*\\d{1,8}");
-    Matcher match1 = feedback1.matcher(str);
-    for(int i=0;i<str.length();i++)
-    { 
-        if((str.charAt(i)=='d') && (str.charAt(i+1)=='o') && (str.charAt(i+2)=='u') && (str.charAt(i+3)=='b') && (str.charAt(i+4)=='l') && (str.charAt(i+5)=='e'))
-        {
-            if(match1.find())
-            {
-                System.out.println("correct initialization");
-                output.add(str);
-            }
-            else
-            {
-                System.out.println("wrong initialization");
-                output.add(str);
-            }
-        }
-        break;
-    }
-    return str;
-}
-//check for char datatype
-public static String checkchardatatype( String str) 
-{
-    Pattern feedback1 = Pattern.compile("[=]['][[a-zA-Z]\\W]*[']");
-    Matcher match1 = feedback1.matcher(str);
-    for(int i=0;i<str.length();i++)
-    { 
-        if((str.charAt(i)=='c') && (str.charAt(i+1)=='h') && (str.charAt(i+2)=='a') && (str.charAt(i+3)=='r'))
-        {
-            if(match1.find())
-            {
-                System.out.println("correct initialization");
-                output.add(str);
-            }
-            else
-            {
-                System.out.println("wrong initialization");
-                output.add(str);
-            }
-        }
-        break;
-    }
-    return str;
-}
-
-//check for float datatype
-public static String checkfloatdatatype( String str) 
-{
-    Pattern feedback1 = Pattern.compile("[=]\\d{1,4}[.]*\\d{1,4}[fF]");
-    Matcher match1 = feedback1.matcher(str);
-    for(int i=0;i<str.length();i++)
-    { 
-        if((str.charAt(i)=='f') && (str.charAt(i+1)=='l') && (str.charAt(i+2)=='o') && (str.charAt(i+3)=='a') && (str.charAt(i+4)=='t'))
-        {
-            if(match1.find())
-            {
-                System.out.println("correct initialization");
-                output.add(str);
-            }
-            else
-            {
-                System.out.println("wrong initialization");
-                output.add(str);
-            }
-        }
-        break;
-    }
-    return str;
-}
-
 public static String checkParenthesis( String str) 
 {
     Pattern feedback1 = Pattern.compile("[\\w]+[(].+[)][;]");
