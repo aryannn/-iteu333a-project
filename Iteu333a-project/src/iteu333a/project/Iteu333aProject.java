@@ -25,7 +25,7 @@ public class Iteu333aProject {
         
        
         //Main codes here...
-        try{Scanner scan = new Scanner(new FileReader("C:\\Users\\hp1\\Documents\\NetBeansProjects\\-iteu333a-compilerproject\\Iteu333a-project\\src\\iteu333a\\project\\cs.txt"));
+        try{Scanner scan = new Scanner(new FileReader("input.txt"));
         PrintWriter writer = new PrintWriter("Test.java", "UTF-8");
             while (scan.hasNext()){
                 String str = scan.nextLine();
