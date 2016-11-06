@@ -62,7 +62,8 @@ public class Iteu333aProject {
                         System.out.println("No semicolon detected.");
                     }     
                 }
-                
+                isWhitespace(str);
+                strconcat(str);
                 writer.println(str);
                 System.out.println();
             }
