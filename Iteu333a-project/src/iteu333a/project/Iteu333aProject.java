@@ -35,14 +35,8 @@ public class Iteu333aProject {
                 if((str.contains("//")))
                 {
                     System.out.println("comment detected");
-                }
-                //check spaces
-                 if((str.contains ("    "))){
+                }                
                   
-                  System.out.println("One Space only." + str);
-                  str.replaceAll("\\s+", " ");
-                  
-                  }
                 //check if semicolon is present
                 else
                 {
@@ -66,8 +60,9 @@ public class Iteu333aProject {
                     else
                     {
                         System.out.println("No semicolon detected.");
-                    }
+                    }     
                 }
+                
                 writer.println(str);
                 System.out.println();
             }
@@ -174,4 +169,37 @@ public static String checkParenthesis( String str)
     }
     return str;
 }
+ //concatenate string 
+public static String strconcat (String str){
+ 
+     Pattern p = Pattern.compile ("[a-zA-Z][0-9]");
+     Matcher m1 = p.matcher (str);
+     Pattern p2 = Pattern.compile("[a-zA-Z][0-9]");
+     Matcher m2 = p2.matcher(str);
+     
+     while (m1.find() && m2.find())
+     {
+       System.out.println(m1.group() + ""+ m2.group());
+     }
+        return str;
+
 }
+ //check spaces 
+public static boolean isWhitespace(String str) {
+      if (str == null) {
+          return false;
+      }
+      int spac = str.length();
+      for (int i = 0; i < spac; i++) {
+          if ((Character.isWhitespace(str.charAt(i)) == false)) {
+              System.out.println("One Space Only.");
+              return false;
+          }
+      }
+      return true;
+  }
+
+}
+
+
+
