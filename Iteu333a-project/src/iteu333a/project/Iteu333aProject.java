@@ -79,7 +79,6 @@ public class Iteu333aProject {
                           checkfordatatype(str);
                           //print array
                           System.out.println(var1);
-                          System.out.println("Tangina this :(((((((((((");
                         }
                     }
                     else

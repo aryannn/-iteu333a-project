@@ -7,8 +7,8 @@ double grade =1.5;
 float data =1.4f;
 
 //print
-("kumusta mundo");
-System.out.println("hahahaah");
+("Hello World");
+System.out.println("Mini Compiler");
 
 //print Variables
 System.out.println(num1);

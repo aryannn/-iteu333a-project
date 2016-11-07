@@ -7,8 +7,8 @@ double grade =1.5;
 float data =1.4f;
 
 //print
-("kumusta mundo");
-print("hahahaah");
+("Hello World");
+print("Mini Compiler");
 
 //print Variables
 print(num1);
