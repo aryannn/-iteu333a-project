@@ -87,7 +87,8 @@ public class Iteu333aProject {
                     } 
                     
                 }
-                
+                isWhitespace(str);
+                strconcat(str);
                 writer.println(str);
                 System.out.println();
             }
