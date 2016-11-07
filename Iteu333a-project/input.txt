@@ -1,0 +1,17 @@
+//check comment
+int num1 =1;
+String studfirst ="Aleeza";
+String studlast ="Viray";
+char a_ans ='a';
+double grade =1.5;
+float data =1.4f;
+
+//print
+("kumusta mundo");
+print("hahahaah");
+
+//print Variables
+print(num1);
+print(studlast);
+print(average);
+

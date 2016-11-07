@@ -12,55 +12,81 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 //Import here...
 public class Iteu333aProject {
-
     
-    public static ArrayList<String> output;
     //Global variable here...
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, IOException{
         
-       
         //Main codes here...
-        try{Scanner scan = new Scanner(new FileReader("input.txt"));
-        PrintWriter writer = new PrintWriter("Test.java", "UTF-8");
+        try{
+            Scanner scan = new Scanner(new FileReader("input.txt"));
+            PrintWriter writer = new PrintWriter("Test.java", "UTF-8");
+            Set<String> var1 = new HashSet<>();
+            Set<String> var2 = new HashSet<>();
+            
             while (scan.hasNext()){
                 String str = scan.nextLine();
                 //print file
                 System.out.println(str);
+                if(str.matches(""))
+                {
+                    //newline
+                }
                 // check for comment
-                if((str.contains("//")))
+                else if((str.contains("//")))
                 {
                     System.out.println("comment detected");
-                }                
-                  
+                }
                 //check if semicolon is present
                 else
                 {
                     if(str.endsWith(";"))
                     {
+                        //if contains print
+                        if(str.contains("print"))
+                        {
+                          str = str.replace("print", "System.out.println");
+                          System.out.println(str);
+                          //if print contains variable
+                          if((str.contains("print")) && (str.contains("(")) && (!str.contains("\"")))
+                          {
+                             //add variables from print to array
+                             var2.add(getVariablefromPrint(str));
+                              System.out.println(var2); 
+                          }
+                        }
+                        else if(str.startsWith("("))
+                        {
+                            System.out.println("should be print(\"\");");
+                        }
                         //check if datatype is present
-                        if((!str.contains("int")) && (!str.contains("float")) && (!str.contains("double")) && (!str.contains("String")) && (!str.contains("char")))  
+                        else if((!str.contains("int")) && (!str.contains("float")) && (!str.contains("double")) && (!str.contains("String")) && (!str.contains("char")))  
                         {
                             System.out.println("no datatype detected");
-
                         }               
                         else
                         {
                           System.out.println("datatype detected");
-                        //check for correct datatype
+                          // add variables to array
+                          var1.add(getVariablefromDatatype(str));
+                          //check for correct datatype
                           checkfordatatype(str);
-                        //check for parenthesis
-                          checkParenthesis(str);
+                          //print array
+                          System.out.println(var1);
+                          System.out.println("Tangina this :(((((((((((");
                         }
                     }
                     else
                     {
                         System.out.println("No semicolon detected.");
-                    }     
+                    } 
+                    
                 }
                 
                 writer.println(str);
@@ -74,8 +100,7 @@ public class Iteu333aProject {
         }
         
     }
-//check for integer datatype
-    
+//check for correct datatype   
 public static String checkfordatatype(String str)
 {
     Pattern intresult = Pattern.compile("int [a-zA-Z]*[a-zA-Z0-9_]{1,}.[=]*[-]*[0-9]{1,8}[;]");
@@ -137,68 +162,39 @@ public static String checkfordatatype(String str)
         }
     
     }
+    
     return str;
 }
-public static String checkParenthesis( String str) 
+public static String getVariablefromDatatype(String str)
 {
-    Pattern feedback1 = Pattern.compile("[\\w]+[(].+[)][;]");
-    Matcher match1 = feedback1.matcher(str);
-    for(int i=0;i<str.length();i++)
+    Pattern variable = Pattern.compile("[ ][a-zA-Z]*[a-zA-Z0-9_]{1,}");
+    Matcher match6 = variable.matcher(str);
+    String[] result = null;
+    
+    while(match6.find())
     {
-        if(str.contains("("))
-        {
-            if(match1.find())
-            {
-                if(!str.contains(")")){
-                    System.out.println("wrong initialization");
-                    output.add(str);
-                }
-                else{
-                    System.out.println("correct initialization");
-                    output.add(str);                    
-                }
-                
-            }
-            else
-            {
-                System.out.println("wrong initialization");
-                output.add(str);
-            }
-        }
-        break;
+        String newvar2 = match6.group();
+        result = newvar2.split(" "); 
     }
-    return str;
-}
- //concatenate string 
-public static String strconcat (String str){
- 
-     Pattern p = Pattern.compile ("[a-zA-Z][0-9]");
-     Matcher m1 = p.matcher (str);
-     Pattern p2 = Pattern.compile("[a-zA-Z][0-9]");
-     Matcher m2 = p2.matcher(str);
-     
-     while (m1.find() && m2.find())
-     {
-       System.out.println(m1.group() + ""+ m2.group());
-     }
-        return str;
+    return result[1];
+    }
+public static String getVariablefromPrint(String str)
+{
+    Pattern print = Pattern.compile("[(][a-zA-Z]*[a-zA-Z0-9_]{1,}[)]");
+    Matcher printmatch = print.matcher(str);
+    String[] varmatch = null;
 
-}
- //check spaces 
-public static boolean isWhitespace(String str) {
-      if (str == null) {
-          return false;
-      }
-      int spac = str.length();
-      for (int i = 0; i < spac; i++) {
-          if ((Character.isWhitespace(str.charAt(i)) == false)) {
-              System.out.println("One Space Only.");
-              return false;
-          }
-      }
-      return true;
-  }
-
+   while(printmatch.find())
+   {
+       String newvar3 = printmatch.group();
+       System.out.println(newvar3);
+       newvar3 = newvar3.replace("(","\"");
+       newvar3 = newvar3.replace(")","\"");
+       System.out.println(newvar3);
+       varmatch = newvar3.split("\""); 
+   } 
+    return varmatch[1];
+    }
 }
 
 
