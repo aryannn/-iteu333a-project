@@ -87,8 +87,20 @@ public class Iteu333aProject {
                     } 
                     
                 }
+                 //concatenate string 
+                final String regex = "pan+cake";
+                final String string = "pancake";
+
+                final Pattern pattern = Pattern.compile(regex);
+                final Matcher matcher = pattern.matcher(string);
+
+                while (matcher.find()) {
+                System.out.println("Full match: " + matcher.group(0));
+                for (int i = 1; i <= matcher.groupCount(); i++) {
+                System.out.println("Group " + i + ": " + matcher.group(i));
+                 }
+                    }
                 isWhitespace(str);
-                strconcat(str);
                 writer.println(str);
                 System.out.println();
             }
@@ -225,22 +237,8 @@ public static String getVariablefromPrint(String str)
    } 
     return varmatch[1];
     }
- //concatenate string 
-static String strconcat (String strc){
-     
-   Pattern p = Pattern.compile ("[a-zA-Z][0-9]+");
-     Matcher m1 = p.matcher ("Test");
-     Pattern p2 = Pattern.compile("[a-zA-Z][0-9]");
-     Matcher m2 = p2.matcher(strc);
-     String result = m1.group()+" "+ m2.group();
-     while (m1.find() && m2.find())
-     {
-       System.out.println(result);
-       
-     }
-        return strc;
-   
-}
+
+
 
  //check spaces 
 static boolean isWhitespace(String strs) {
