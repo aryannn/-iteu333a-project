@@ -14,3 +14,4 @@ System.out.println("Mini Compiler");
 System.out.println(num1);
 System.out.println(studlast);
 System.out.println(average);
+String strs = "Edi WOw.!";
