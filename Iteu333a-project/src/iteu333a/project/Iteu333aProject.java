@@ -88,11 +88,11 @@ public class Iteu333aProject {
                     
                 }
                  //concatenate string 
-                final String regex = "pan+cake";
-                final String string = "pancake";
+                String regex = "pan+cake";
+                String string = "pancake";
 
-                final Pattern pattern = Pattern.compile(regex);
-                final Matcher matcher = pattern.matcher(string);
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(string);
 
                 while (matcher.find()) {
                 System.out.println("Full match: " + matcher.group(0));
