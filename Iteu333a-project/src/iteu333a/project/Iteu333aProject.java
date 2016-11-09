@@ -195,6 +195,67 @@ public static String getVariablefromPrint(String str)
    } 
     return varmatch[1];
     }
+    public static String getVariablefromDatatype(String str)
+{
+    Pattern variable = Pattern.compile("[ ][a-zA-Z]*[a-zA-Z0-9_]{1,}");
+    Matcher match6 = variable.matcher(str);
+    String[] result = null;
+    
+    while(match6.find())
+    {
+        String newvar2 = match6.group();
+        result = newvar2.split(" "); 
+    }
+    return result[1];
+    }
+public static String getVariablefromPrint(String str)
+{
+    Pattern print = Pattern.compile("[(][a-zA-Z]*[a-zA-Z0-9_]{1,}[)]");
+    Matcher printmatch = print.matcher(str);
+    String[] varmatch = null;
+
+   while(printmatch.find())
+   {
+       String newvar3 = printmatch.group();
+       System.out.println(newvar3);
+       newvar3 = newvar3.replace("(","\"");
+       newvar3 = newvar3.replace(")","\"");
+       System.out.println(newvar3);
+       varmatch = newvar3.split("\""); 
+   } 
+    return varmatch[1];
+    }
+ //concatenate string 
+static String strconcat (String strc){
+     
+   Pattern p = Pattern.compile ("[a-zA-Z][0-9]+");
+     Matcher m1 = p.matcher ("Test");
+     Pattern p2 = Pattern.compile("[a-zA-Z][0-9]");
+     Matcher m2 = p2.matcher(strc);
+     String result = m1.group()+" "+ m2.group();
+     while (m1.find() && m2.find())
+     {
+       System.out.println(result);
+       
+     }
+        return strc;
+   
+}
+
+ //check spaces 
+static boolean isWhitespace(String strs) {
+      
+      System.out.println("One Space");
+
+      }
+      int spac = strs.length();
+      for (int i = 0; i < spac; i++) {
+          if ((Character.isWhitespace(strs.charAt(i)) == false)) {
+              return false;
+          }
+      }
+      return true;
+  }
 }
 
 
