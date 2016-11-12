@@ -30,6 +30,8 @@ public class Iteu333aProject {
             Set<String> var1 = new HashSet<>();
             Set<String> var2 = new HashSet<>();
             
+            
+            
             while (scan.hasNext()){
                 String str = scan.nextLine();
                 //print file
@@ -207,8 +209,25 @@ public static String getVariablefromPrint(String str)
    } 
     return varmatch[1];
     }
-    public static String getVariablefromDatatype(String str)
-{
+
+static boolean isWhitespace(String strs) {
+      
+      System.out.println("One Space");
+
+      
+      int spac = strs.length();
+      for (int i = 0; i < spac; i++) {
+          if ((Character.isWhitespace(strs.charAt(i)) == false)) {
+              return false;
+          }
+      }
+      return true;
+  }
+}
+
+
+
+    /*private static String getVariablefromDatatype(String str){
     Pattern variable = Pattern.compile("[ ][a-zA-Z]*[a-zA-Z0-9_]{1,}");
     Matcher match6 = variable.matcher(str);
     String[] result = null;
@@ -220,6 +239,7 @@ public static String getVariablefromPrint(String str)
     }
     return result[1];
     }
+    
 public static String getVariablefromPrint(String str)
 {
     Pattern print = Pattern.compile("[(][a-zA-Z]*[a-zA-Z0-9_]{1,}[)]");
@@ -237,24 +257,9 @@ public static String getVariablefromPrint(String str)
    } 
     return varmatch[1];
     }
-
+*/
 
 
  //check spaces 
-static boolean isWhitespace(String strs) {
-      
-      System.out.println("One Space");
-
-      }
-      int spac = strs.length();
-      for (int i = 0; i < spac; i++) {
-          if ((Character.isWhitespace(strs.charAt(i)) == false)) {
-              return false;
-          }
-      }
-      return true;
-  }
-}
-
 
 
